@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Welcome to Lab Work</title>
+    <h:outputStylesheet name="styles/index.css"/>
+</h:head>
+<h:body>
+    <div class="header">
+        <h1>Web Programming Lab Work</h1>
+    </div>
+
+    <div class="container">
+        <div class="student-info">
+            <p>Pakhomov Vladislav Vladimirovich</p>
+            <p>Group: P3234</p>
+            <p>Variant: 24177</p>
+        </div>
+
+        <div id="clock" class="clock">
+            Loading...
+        </div>
+
+        <h:form>
+            <h:commandButton value="Go to Main Page"
+                             action="goToMain"
+                             styleClass="button"/>
+        </h:form>
+    </div>
+
+    <h:outputScript name="js/clock.js"/>
+</h:body>
+</html>

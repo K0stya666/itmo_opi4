@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Lab Work</title>
+    <h:outputStylesheet name="/styles/main.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+</h:head>
+<h:body>
+    <div class="container">
+        <div class="header">
+            <h1>Coordinate Plane Checker</h1>
+        </div>
+
+        <div class="graph-container">
+            <canvas id="graph" width="600" height="600">
+            </canvas>
+
+            <!-- Включаем переиспользуемый компонент формы ввода -->
+            <ui:include src="/templates/inputForm.xhtml"/>
+        </div>
+
+        <!-- Включаем переиспользуемый компонент таблицы результатов -->
+        <ui:include src="/templates/resultsTable.xhtml"/>
+
+        <h:form>
+            <h:commandButton value="Return to Index" action="goToIndex" styleClass="button"/>
+        </h:form>
+    </div>
+
+    <h:outputScript name="js/graph.js"/>
+</h:body>
+</html>

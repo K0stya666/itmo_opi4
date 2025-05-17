@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:form styleClass="form-grid" onsubmit="return validateForm();">
+        <div class="form-row">
+            <h:outputLabel for="x" value="X Coordinate:" styleClass="form-label"/>
+            <h:selectOneMenu id="x" value="#{inputBean.result.x}" required="true" styleClass="select-menu">
+                <f:selectItem itemLabel="Select X" itemValue=""/>
+                <f:selectItems value="#{[-3,-2,-1,0,1,2,3,4,5]}" var="val" itemLabel="#{val}" itemValue="#{val}"/>
+            </h:selectOneMenu>
+        </div>
+
+        <div class="form-row">
+            <h:outputLabel for="y" value="Y Coordinate:" styleClass="form-label"/>
+            <h:inputText id="y" value="#{inputBean.result.y}" required="true" styleClass="input-field">
+                <f:validateDoubleRange minimum="-3" maximum="5"/>
+            </h:inputText>
+            <h:message for="y" styleClass="error-message"/>
+        </div>
+
+        <div class="form-row">
+            <h:outputLabel for="r" value="Radius (R):" styleClass="form-label"/>
+            <h:selectOneMenu id="r" value="#{inputBean.result.r}" required="true" styleClass="select-menu"
+                             onchange="drawGraph()">
+                <f:selectItem itemLabel="Select R" itemValue=""/>
+                <f:selectItems value="#{[1,2,3,4,5]}" var="val" itemLabel="#{val}" itemValue="#{val}"/>
+            </h:selectOneMenu>
+        </div>
+
+        <div class="form-row">
+            <h:commandButton value="Check Point" action="#{inputBean.processInput}" styleClass="button"/>
+            <h:commandButton value="Clear History" action="#{resultBean.clearResults}" styleClass="button"/>
+        </div>
+    </h:form>
+</ui:composition>
