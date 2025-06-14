@@ -14,15 +14,31 @@ public class ResultBean implements Serializable {
     @Inject
     private ResultListBean resultListBean; // Бин для управления списком результатов
 
+    @Inject
+    private PointsMonitoring pointsMonitoring;
+
+    @Inject
+    private ClickTiming clickTiming;
+
     /**
      * Обработчик попадания точки.
      *
      * @param result объект Result, который нужно обработать.
      */
     public void checkHit(Result result) {
+        // Record the click timing
+        clickTiming.recordClick();
+
+        // Increment total points counter
+        pointsMonitoring.incrementTotalPoints();
+
+
         // Проверка попадания в область
         result.setHit(checkPoint(result));
 
+        if (!result.isHit()) {
+            pointsMonitoring.incrementOutOfBoundsPoints();
+        }
         // Сохранение результата
         saveResult(result);
     }
@@ -66,6 +82,8 @@ public class ResultBean implements Serializable {
      */
     public void clearResults() {
         resultListBean.clearResults();
+        pointsMonitoring.resetCounters();
+        clickTiming.resetTiming();
     }
 
     /**
