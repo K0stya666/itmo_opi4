@@ -3,6 +3,6 @@ global:
 
 scrape_configs:
   - job_name: 'jakartaee_app'
-    metrics_path: /web3-2.0/api/metrics
+    metrics_path: /web3-2.0/metrics
     static_configs:
       - targets: ['localhost:8080']

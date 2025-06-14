@@ -5,8 +5,11 @@ import io.prometheus.client.Gauge;
 import io.prometheus.client.Histogram;
 import jakarta.enterprise.context.ApplicationScoped;
 
+import java.util.logging.Logger;
+
 @ApplicationScoped
 public class ClickTiming implements ClickTimingMBean {
+    private static final Logger LOGGER = Logger.getLogger(ClickTiming.class.getName());
 
     // Счётчик общего числа кликов
     private static final Counter CLICK_COUNTER = Counter.build()
@@ -40,7 +43,7 @@ public class ClickTiming implements ClickTimingMBean {
 
     @Override
     public void recordClick() {
-        System.out.println(">>> incrementTotalPoints()");
+        LOGGER.info(">>> incrementTotalPoints()");
         long currentTime = System.currentTimeMillis();
         if (lastClickTime != 0) {
             long interval = currentTime - lastClickTime;

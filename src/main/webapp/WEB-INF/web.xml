@@ -41,4 +41,13 @@
         <url-pattern>*.xhtml</url-pattern> <!-- Изменено на .xhtml -->
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>prometheusMetrics</servlet-name>
+        <servlet-class>io.prometheus.client.servlet.jakarta.exporter.MetricsServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>prometheusMetrics</servlet-name>
+        <url-pattern>/metrics</url-pattern>
+    </servlet-mapping>
 </web-app>

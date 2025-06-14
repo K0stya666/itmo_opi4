@@ -6,9 +6,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 import javax.management.Notification;
 import javax.management.NotificationBroadcasterSupport;
 import javax.management.ObjectName;
+import java.util.logging.Logger;
 
 @ApplicationScoped
 public class PointsMonitoring extends NotificationBroadcasterSupport implements PointsMonitoringMBean {
+    private static final Logger LOGGER = Logger.getLogger(PointsMonitoring.class.getName());
 
     // Счётчики для total и outOfBounds
     private static final Counter TOTAL_POINTS_COUNTER = Counter.build()
@@ -41,7 +43,7 @@ public class PointsMonitoring extends NotificationBroadcasterSupport implements 
 
     @Override
     public void incrementTotalPoints() {
-        System.out.println(">>> incrementTotalPoints()");
+        LOGGER.info(">>> incrementTotalPoints()");
         totalPoints++;
         // Увеличиваем Prometheus-счётчик
         TOTAL_POINTS_COUNTER.inc();
